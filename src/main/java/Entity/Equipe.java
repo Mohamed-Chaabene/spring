@@ -1,0 +1,16 @@
+package Entity;
+import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Date;
+@Entity
+public class Equipe implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEquipe; // Clé primaire
+    private String libelle;
+    private Integer nbPointsTotal;
+    private Integer ClassementGerenal;
+}
+
