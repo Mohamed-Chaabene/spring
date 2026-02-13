@@ -1,18 +1,37 @@
 package tn.esprit.arctic1.arctic1.Entity;
-import jakarta.persistence.*;
-import java.io.Serializable;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.*;
+
+import java.time.LocalDate;
 import java.util.List;
-
 @Entity
-public class Sponsor implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSponsor; // Clé primaire
-    private String name;
-    private String pays;
-    private Float budgetAnnuel;
-    private Boolean BloquerContrat;
-    @OneToMany(mappedBy = "sponsor", cascade = CascadeType.ALL)
-    private List<Contrat> contrats;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Sponsor {
 
+    @Id
+    private Long idSponsor;
+
+    private String nom;
+
+    private String pays;
+
+    private Float budgetAnnuel;
+
+    private Boolean bloquerContrat;
+
+    Boolean archived;
+
+    LocalDate dateCreation;
+
+    LocalDate dateDerniereModification;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="Sponsor")
+    private List<Contrat> contrats;
 }
+
